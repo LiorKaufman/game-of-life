@@ -107,7 +107,7 @@ const Main =() => {
         setGridFull(gridCopy)
     };
 
-    const seedBoxes = () => {
+    const handleRandomSeed = () => {
         let gridCopy = JSON.parse(JSON.stringify(gridArray));
         for (let rowIndex = 0; rowIndex < rows ; rowIndex++)
         {
@@ -124,23 +124,52 @@ const Main =() => {
         setRunning(false);
     };
 
+    const handleReset = () => {
+        let gridCopy = JSON.parse(JSON.stringify(gridArray));
+        for (let rowIndex = 0; rowIndex < rows ; rowIndex++)
+        {
+            for (let colsIndex = 0; colsIndex < cols ; colsIndex++)
+            {
+                if (Math.floor(Math.random() * 4) === 1)
+                {
+                    gridCopy[rowIndex][colsIndex] = false
+                }
+            }
+        }
+        setGridFull(gridCopy);
+        setGeneration(0);
+        setRunning(false);
+    }
+
     return (
         <div>
             <h1> Game of Life</h1>
 
-            <button
-                onClick={() => {
-                    setRunning(!running);
-                    if (!running) {
-                        runningRef.current = true;
-                        runSimulation();
-                    }
-                }}
-            >
-                {running ? "stop" : "start"}
-            </button>
+            <div className="container">
 
-            <button onClick={seedBoxes}> Seed</button>
+                <div className="col">
+                    <div className="col text-center">
+                        <button
+                            className={running? "btn btn-danger mr-1": "btn btn-primary mr-1"}
+                            style={{fontWeight: "bold", color: "black"}}
+                            onClick={() => {
+                                setRunning(!running);
+                                if (!running) {
+                                    runningRef.current = true;
+                                    runSimulation();
+                                }
+                            }}
+                        >
+                            {running ? "stop" : "start"}
+                        </button>
+
+                        <button  className="btn btn-warning mr-1" onClick={handleRandomSeed} style={{fontWeight: "bold"}}> Seed</button>
+                        <button  className="btn btn-secondary mr-1" onClick={handleReset} style={{fontWeight: "bold", color: "black"}}> Reset</button>
+                    </div>
+                </div>
+
+
+            </div>
 
             <Grid rows={rows} cols={cols} speed={speed} gridFull={gridFull} selectBox={selectBox} />
             <h2> Generation: {generation}</h2>

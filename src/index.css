@@ -4,11 +4,13 @@ body {
   background:
           radial-gradient(circle at 0% 50%, rgba(96, 16, 48, 0) 9px, #613 10px, rgba(96, 16, 48, 0) 11px) 0px 10px,
           radial-gradient(at 100% 100%,      rgba(96, 16, 48, 0) 9px, #613 10px, rgba(96, 16, 48, 0) 11px),
-          #8a3;
-  background-size: 20px 20px;
+          #8a3 !important;
+  background-size: 20px 20px !important;
 }
 
-.box {
+.game-box {
+  box-sizing: content-box !important;
+
   display: inline-block;
   border: 1px solid black;
   width: 15px;
@@ -36,7 +38,7 @@ body {
   margin-top: 10px;
 }
 
-.grid {
+.game-grid {
   width: 150px;
   line-height: 0;
   margin: auto;

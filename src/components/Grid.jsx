@@ -12,7 +12,7 @@ const Grid =({cols, rows, speed, gridFull, selectBox}) => {
         for (let j = 0; j <cols; j++) {
             let boxId = i + "_" + j;
 
-            boxClass = gridFull[i][j]? "box on": "box off";
+            boxClass = gridFull[i][j]? "game-box on": "game-box off";
             rowsArr.push(
                 <Box
                 boxClass={boxClass}
@@ -26,7 +26,7 @@ const Grid =({cols, rows, speed, gridFull, selectBox}) => {
     }
 
     return (
-        <div className="grid" style={{ width}}>
+        <div className="game-grid" style={{ width}}>
             {rowsArr}
         </div>
     );
